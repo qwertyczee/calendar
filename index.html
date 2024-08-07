@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hlavní stránka</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Program pro plánování tréninků</h1>
+        <nav>
+            <button id="register-btn">Registrovat</button>
+            <button id="login-btn">Přihlásit</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="info">
+            <h2>O programu</h2>
+            <p>Tento program umožňuje uživatelům registrovat se, vytvářet a spravovat servery, a plánovat tréninky. Připojte se a začněte organizovat své tréninky efektivně!</p>
+        </section>
+    </main>
+
+    <!-- Floating přihlašovací deska -->
+    <div id="overlay" class="hidden">
+        <div id="auth-panel">
+            <span id="close-btn">&times;</span>
+            <div id="register-form-container">
+                <h2>Registrovat se</h2>
+                <form id="register-form">
+                    <label for="reg-username">Uživatelské jméno:</label>
+                    <input type="text" id="reg-username" required>
+                    <label for="reg-password">Heslo:</label>
+                    <input type="password" id="reg-password" required>
+                    <button type="submit">Registrovat</button>
+                </form>
+                <p>Máte už účet? <a href="#" id="switch-to-login">Přihlásit se</a></p>
+            </div>
+            <div id="login-form-container" class="hidden">
+                <h2>Přihlásit se</h2>
+                <form id="login-form">
+                    <label for="login-username">Uživatelské jméno:</label>
+                    <input type="text" id="login-username" required>
+                    <label for="login-password">Heslo:</label>
+                    <input type="password" id="login-password" required>
+                    <button type="submit">Přihlásit</button>
+                </form>
+                <p>Nemáte účet? <a href="#" id="switch-to-register">Registrovat se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

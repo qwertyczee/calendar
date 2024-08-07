@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <button id="logout-btn">Odhlásit se</button>
+    </header>
+
+    <main>
+        <section id="create-server">
+            <h2>Vytvořit server</h2>
+            <form id="create-server-form">
+                <label for="server-name">Název serveru:</label>
+                <input type="text" id="server-name" required>
+                <button type="submit">Vytvořit server</button>
+            </form>
+        </section>
+        
+        <section id="join-server">
+            <h2>Připojit se k serveru</h2>
+            <form id="join-server-form">
+                <label for="server-id">ID serveru:</label>
+                <input type="text" id="server-id" required>
+                <label for="server-password">Heslo:</label>
+                <input type="password" id="server-password" required>
+                <button type="submit">Připojit se</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="scripts/dashboard.js"></script>
+    <script>
+        // Kontrola přihlášení při načtení stránky
+        document.addEventListener('DOMContentLoaded', () => {
+            const loggedIn = localStorage.getItem('loggedIn');
+            if (loggedIn !== 'true') {
+                // Pokud uživatel není přihlášen, přesměrujte ho na hlavní stránku
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
