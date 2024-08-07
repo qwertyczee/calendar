@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Firebase konfigurace
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // Inicializace Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
     const registerBtn = document.getElementById('register-btn');
     const loginBtn = document.getElementById('login-btn');
     const overlay = document.getElementById('overlay');
@@ -8,10 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginFormContainer = document.getElementById('login-form-container');
     const switchToLogin = document.getElementById('switch-to-login');
     const switchToRegister = document.getElementById('switch-to-register');
+    const toggleRegPassword = document.getElementById('toggle-reg-password');
+    const toggleLoginPassword = document.getElementById('toggle-login-password');
+    const regPassword = document.getElementById('reg-password');
+    const loginPassword = document.getElementById('login-password');
 
     function showAuthPanel() {
-        overlay.style.display = 'flex';
+        overlay.classList.remove('hidden');
         authPanel.classList.remove('hidden');
+    }
+
+    function hideAuthPanel() {
+        overlay.classList.add('hidden');
+        authPanel.classList.add('hidden');
     }
 
     function showRegisterForm() {
@@ -35,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeBtn.addEventListener('click', () => {
-        overlay.style.display = 'none';
+        hideAuthPanel();
     });
 
     switchToLogin.addEventListener('click', (e) => {
@@ -53,14 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('reg-username').value;
+            const email = document.getElementById('reg-username').value;
             const password = document.getElementById('reg-password').value;
-            // Uložení uživatelských údajů do localStorage (pouze příklad)
-            localStorage.setItem('username', username);
-            localStorage.setItem('password', password);
-            console.log('Registrovat:', username, password);
-            // Zavření panelu po registraci
-            overlay.style.display = 'none';
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    console.log('Registrován:', userCredential.user);
+                    hideAuthPanel();
+                })
+                .catch((error) => {
+                    console.error('Chyba při registraci:', error);
+                    alert(error.message);
+                });
         });
     }
 
@@ -69,18 +95,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('login-username').value;
+            const email = document.getElementById('login-username').value;
             const password = document.getElementById('login-password').value;
-            const storedUsername = localStorage.getItem('username');
-            const storedPassword = localStorage.getItem('password');
-            if (username === storedUsername && password === storedPassword) {
-                // Uložení přihlašovacího stavu
-                localStorage.setItem('loggedIn', 'true');
-                console.log('Přihlášení úspěšné:', username);
-                window.location.href = 'dashboard.html';
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    console.log('Přihlášen:', userCredential.user);
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    console.error('Chyba při přihlášení:', error);
+                    alert('Špatné uživatelské jméno nebo heslo');
+                });
+        });
+    }
+
+    // Zobrazení/skrytí hesla
+    function togglePasswordVisibility(input, button) {
+        button.addEventListener('click', () => {
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.textContent = 'Skrýt';
             } else {
-                alert('Špatné uživatelské jméno nebo heslo');
+                input.type = 'password';
+                button.textContent = 'Zobrazit';
             }
         });
+    }
+
+    if (toggleRegPassword && regPassword) {
+        togglePasswordVisibility(regPassword, toggleRegPassword);
+    }
+
+    if (toggleLoginPassword && loginPassword) {
+        togglePasswordVisibility(loginPassword, toggleLoginPassword);
     }
 });
