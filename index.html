@@ -8,11 +8,8 @@
 </head>
 <body>
     <header>
-        <h1>Program pro plánování tréninků</h1>
-        <nav>
-            <button id="register-btn">Registrovat</button>
-            <button id="login-btn">Přihlásit</button>
-        </nav>
+        <button id="register-btn">Registrovat</button>
+        <button id="login-btn">Přihlásit</button>
     </header>
 
     <main>
@@ -21,40 +18,61 @@
             <p>Tento program umožňuje uživatelům registrovat se, vytvářet a spravovat servery, a plánovat tréninky. Připojte se a začněte organizovat své tréninky efektivně!</p>
         </section>
     </main>
-
-    <!-- Floating přihlašovací panel -->
+    
     <div id="overlay" class="hidden">
-        <div id="auth-panel">
+        <div id="auth-panel" class="hidden">
             <span id="close-btn">&times;</span>
-            <div id="register-form-container">
-                <h2>Registrovat se</h2>
+            <div id="register-form-container" class="hidden">
+                <h2>Registrace</h2>
                 <form id="register-form">
-                    <label for="reg-username">Uživatelské jméno:</label>
-                    <input type="text" id="reg-username" required>
+                    <label for="reg-username">Email:</label>
+                    <input type="email" id="reg-username" required>
                     <label for="reg-password">Heslo:</label>
                     <input type="password" id="reg-password" required>
                     <button type="button" id="toggle-reg-password">Zobrazit</button>
                     <button type="submit">Registrovat</button>
+                    <p>Máte účet? <a href="#" id="switch-to-login">Přihlásit se</a></p>
                 </form>
-                <p>Máte už účet? <a href="#" id="switch-to-login">Přihlásit se</a></p>
             </div>
-            <div id="login-form-container" class="hidden">
-                <h2>Přihlásit se</h2>
+            <div id="login-form-container">
+                <h2>Přihlášení</h2>
                 <form id="login-form">
-                    <label for="login-username">Uživatelské jméno:</label>
-                    <input type="text" id="login-username" required>
+                    <label for="login-username">Email:</label>
+                    <input type="email" id="login-username" required>
                     <label for="login-password">Heslo:</label>
                     <input type="password" id="login-password" required>
                     <button type="button" id="toggle-login-password">Zobrazit</button>
                     <button type="submit">Přihlásit</button>
+                    <p>Nemáte účet? <a href="#" id="switch-to-register">Registrovat se</a></p>
                 </form>
-                <p>Nemáte účet? <a href="#" id="switch-to-register">Registrovat se</a></p>
             </div>
         </div>
     </div>
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCw8386dT3A0NLxk0uzUW_4eeaZWwuKYz0",
+          authDomain: "webcalendar-8d3a8.firebaseapp.com",
+          projectId: "webcalendar-8d3a8",
+          storageBucket: "webcalendar-8d3a8.appspot.com",
+          messagingSenderId: "373837871181",
+          appId: "1:373837871181:web:c814cc2b6c661434d28404",
+          measurementId: "G-9ZCBHWMQGP"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 </html>
