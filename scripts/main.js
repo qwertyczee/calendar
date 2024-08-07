@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Firebase konfigurace
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_AUTH_DOMAIN",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_STORAGE_BUCKET",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
+        apiKey: "AIzaSyCw8386dT3A0NLxk0uzUW_4eeaZWwuKYz0",
+        authDomain: "webcalendar-8d3a8.firebaseapp.com",
+        projectId: "webcalendar-8d3a8",
+        storageBucket: "webcalendar-8d3a8.appspot.com",
+        messagingSenderId: "373837871181",
+        appId: "1:373837871181:web:c814cc2b6c661434d28404",
+        measurementId: "G-9ZCBHWMQGP"
     };
 
     // Inicializace Firebase
