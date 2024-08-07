@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Firebase konfigurace
+    const firebaseConfig = {
+        apiKey: "AIzaSyCw8386dT3A0NLxk0uzUW_4eeaZWwuKYz0",
+        authDomain: "webcalendar-8d3a8.firebaseapp.com",
+        projectId: "webcalendar-8d3a8",
+        storageBucket: "webcalendar-8d3a8.appspot.com",
+        messagingSenderId: "373837871181",
+        appId: "1:373837871181:web:c814cc2b6c661434d28404",
+        measurementId: "G-9ZCBHWMQGP"
+      };
 
     const registerBtn = document.getElementById('register-btn');
     const loginBtn = document.getElementById('login-btn');
@@ -69,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const email = document.getElementById('reg-username').value;
             const password = document.getElementById('reg-password').value;
-            auth.createUserWithEmailAndPassword(email, password)
+            createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     console.log('Registrován:', userCredential.user);
                     hideAuthPanel();
@@ -88,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const email = document.getElementById('login-username').value;
             const password = document.getElementById('login-password').value;
-            auth.signInWithEmailAndPassword(email, password)
+            signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     console.log('Přihlášen:', userCredential.user);
                     window.location.href = 'dashboard.html';
