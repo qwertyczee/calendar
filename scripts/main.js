@@ -1,18 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Firebase konfigurace
-    const firebaseConfig = {
-        apiKey: "AIzaSyCw8386dT3A0NLxk0uzUW_4eeaZWwuKYz0",
-        authDomain: "webcalendar-8d3a8.firebaseapp.com",
-        projectId: "webcalendar-8d3a8",
-        storageBucket: "webcalendar-8d3a8.appspot.com",
-        messagingSenderId: "373837871181",
-        appId: "1:373837871181:web:c814cc2b6c661434d28404",
-        measurementId: "G-9ZCBHWMQGP"
-    };
-
-    // Inicializace Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
     const registerBtn = document.getElementById('register-btn');
     const loginBtn = document.getElementById('login-btn');
@@ -29,21 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginPassword = document.getElementById('login-password');
 
     function showAuthPanel() {
+        console.log('Zobrazení autentizačního panelu');
         overlay.classList.remove('hidden');
         authPanel.classList.remove('hidden');
     }
 
     function hideAuthPanel() {
+        console.log('Skrytí autentizačního panelu');
         overlay.classList.add('hidden');
         authPanel.classList.add('hidden');
     }
 
     function showRegisterForm() {
+        console.log('Zobrazení registračního formuláře');
         registerFormContainer.classList.remove('hidden');
         loginFormContainer.classList.add('hidden');
     }
 
     function showLoginForm() {
+        console.log('Zobrazení přihlašovacího formuláře');
         registerFormContainer.classList.add('hidden');
         loginFormContainer.classList.remove('hidden');
     }
